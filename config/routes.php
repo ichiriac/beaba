@@ -9,7 +9,7 @@ return array(
                 '/', '/index'
             )
         ),
-        'route' => 'application\\controllers\\index::index'
+        'route' => 'app\\controllers\\index::index'
     ),
     'action' => array(
         'check' => array(
