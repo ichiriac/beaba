@@ -1,5 +1,9 @@
 # Beaba-light
 
+```
+Work in progress - actually this source does not run correctly - comming soon
+```
+
 This project is a light-weight version of the beaba framework - a PHP MVC based framework - written for 
 helping you to increase your dev productivity without needing to use a big or hard to understnd framework.
 

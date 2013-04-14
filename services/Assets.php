@@ -1,6 +1,6 @@
 <?php
 
-namespace beaba\core\services;
+namespace beaba\services;
 
 use \beaba\core;
 
