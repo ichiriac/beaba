@@ -121,11 +121,7 @@ use \beaba\core\Controller;
 
 class index extends Controller {
     public function index_action() {
-        return 'Hello world';array(
-            'get' => array(
-                'html' => $this->getView()
-            )
-        );
+        return 'Hello world';
     }
     public function with_template_action() {
         return $this->getView()->push(
@@ -153,3 +149,10 @@ class index extends Controller {
     }
 }
 ```
+
+## Extras
+
+Beaba is totaly compliant with these great projects :
+
+* forp & forp-ui
+* bootstrap css (from twitter)
