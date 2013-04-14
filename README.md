@@ -5,10 +5,10 @@ helping you to increase your dev productivity without needing to use a big or ha
 
 Objectives are the following : 
 
-5 minutes to understand main principles
-5 minutes to configure your server
+* 5 minutes to understand main principles
+* 5 minutes to configure your server
 
--> You're ready to start your dev
+You're ready to start your dev
 
 ## What does this version
 
