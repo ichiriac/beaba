@@ -1,0 +1,29 @@
+<?php
+    /**
+     * Rendering breadcrumb function
+     */
+    $render = function( $item ) {
+        if ( is_string($item) && strpos($item, ':') !== false) {
+            $item = explode(':', $item, 2);
+        }
+        if ( is_array($item) ) {
+            echo dgettext($item[0], $item[1]);
+        } else {
+            echo dgettext('app', $item);
+        }
+    };
+    if ( !empty($data) ) {
+        $last = array_pop($data);
+?>
+<ul class="breadcrumb">
+    <?php foreach( $data as $item ) { ?>
+    <li>
+        <a href="<?php echo $item['href']; ?>">
+            <?php $render($item['title']); ?>
+        </a>
+        <span class="divider">&gt;</span>
+    </li>
+    <?php } ?>
+    <li class="active"><?php $render($last['title']); ?></li>
+</ul>
+<?php } ?>

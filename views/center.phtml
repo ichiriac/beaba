@@ -1,0 +1,14 @@
+<div class="row" style="margin: 20px 0;">
+    <?php if ( $view->isEmpty('left') ) { ?>
+    <div class="span8 offset1">
+        <?php echo $app->getView()->renderPlaceholder('content'); ?>
+    </div>
+    <?php } else { ?>
+    <div class="span5 offset1">
+        <?php echo $app->getView()->renderPlaceholder('content'); ?>
+    </div>
+    <div class="span4">
+        <?php echo $app->getView()->renderPlaceholder('left'); ?>
+    </div>
+    <?php } ?>
+</div>

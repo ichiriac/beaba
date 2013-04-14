@@ -1,0 +1,6 @@
+[submodule "assets/forp-ui"]
+	path = assets/forp-ui
+	url = https://github.com/aterrien/forp-ui.git
+[submodule "assets/bootstrap"]
+	path = assets/bootstrap
+	url = https://github.com/twitter/bootstrap.git

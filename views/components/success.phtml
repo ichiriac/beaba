@@ -1,0 +1,11 @@
+<div class="alert alert-success">
+    <?php
+        if ( is_array( $data ) && count( $data ) > 1 ) {
+            echo vsprintf( array_shift($data), $data);
+        } elseif ( is_array( $data ) ) {
+            echo array_shift($data);
+        } else {
+            echo $data;
+        }
+    ?>
+</div>

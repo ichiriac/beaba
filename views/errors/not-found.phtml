@@ -1,0 +1,16 @@
+<?php /* @var $data Exception */ ?>
+<div class="page-header">
+    <h1>
+        <?php echo dgettext('core', 'Ressource not Found'); ?>
+    </h1>
+</div>
+<p>
+    <?php echo dgettext('core', 'Unable to find the requested document.'); ?>
+</p>
+<?php if ( IS_DEV ) { ?>
+<hr />
+<h2><?php echo dgettext('core', 'See the following details :'); ?></h2>
+<pre><code><?php
+    echo($data);
+?></code></pre>
+<?php } ?>

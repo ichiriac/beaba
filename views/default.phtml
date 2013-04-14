@@ -1,0 +1,40 @@
+<?php
+    /* @var $app beaba\core\Application */
+    $layout =  $view->renderLayout();
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><?php echo $app->getInfos()->getTitle(); ?></title>
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <?php foreach($app->getAssets()->getCss() as $css) { ?>
+        <link rel="stylesheet" href="<?php echo $css; ?>" />
+        <?php } ?>
+    </head>
+    <body>
+        <?php echo $view->render('menu'); ?>
+        <div class="container">
+            <?php
+                if ( !$view->isEmpty('top') ) {
+                    echo $view->renderPlaceholder('top');
+                }
+            ?>
+            <?php echo $layout; ?>
+            <?php
+                if ( !$view->isEmpty('bottom') ) {
+                    echo $view->renderPlaceholder('bottom');
+                }
+            ?>
+            <hr />
+            <footer>
+                <?php echo $view->renderPlaceholder('footer'); ?>
+            </footer>
+        </div>
+        <?php foreach($app->getAssets()->getJs() as $js) { ?>
+        <script type="text/javascript" src="<?php echo $js; ?>"></script>
+        <?php } ?>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+<?php if ( $view->isEmpty('left') ) { ?>
+    <?php echo $view->renderPlaceholder('content'); ?>
+<?php } else { ?>
+<div class="row">
+    <div class="span7">
+        <?php echo $view->renderPlaceholder('content'); ?>
+    </div>
+    <div class="span5">
+        <?php echo $view->renderPlaceholder('left'); ?>
+    </div>
+</div>
+<?php } ?>
