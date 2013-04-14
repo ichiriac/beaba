@@ -1,8 +1,16 @@
 # Beaba-light
 
-This project is a light-weight version of the beaba framework
+This project is a light-weight version of the beaba framework - a PHP MVC based framework - written for 
+helping you to increase your dev productivity without needing to use a big or hard to understnd framework.
 
-# What does this version
+Objectives are the following : 
+
+5 minutes to understand main principles
+5 minutes to configure your server
+
+-> You're ready to start your dev
+
+## What does this version
 
  - Boostrap a web environement
  - Routing
@@ -10,7 +18,7 @@ This project is a light-weight version of the beaba framework
  - Templating (template - layout - reusable views & components)
  - Application injection layer based on services
 
-# List of built-in services
+## List of built-in services
 
  - Configuration (extension handler)
  - Storage (used by bilbon based on PDO)
@@ -20,8 +28,9 @@ This project is a light-weight version of the beaba framework
  - Request (HTTP request wrapper)
  - Response (Output handler)
 
-# Your application structure
+## Your application structure
 
+```
   +- config*
   |
   +- controllers
@@ -35,23 +44,24 @@ This project is a light-weight version of the beaba framework
   +- www
      |
      +- index.php (the application bootstrap)
+```
 
 * optionnal folders, but in major projets they should be used. In theory, beaba
 only require the index.php but it's not a good thing to put all the application
 into a single file.
 
-# How to create an application
+## How to create an application
 
-1. Donwload and put beaba somewhere
+- Donwload and put beaba somewhere
 By default, I use : /etc/beaba/framework
 
-2. Start to create your application folder
+- Start to create your application folder
 By default, I use : /etc/beaba/apps/my-app
 
-3. Create all application folders, including the index.php.
+- Create all application folders, including the index.php.
 
 The content of your index.php is :
-```
+```php
 <?php
 // defines bootstrap
 define('BEABA_PATH', '/etc/beaba/framework');
@@ -76,13 +86,13 @@ $app->getResponse()
 ;
 ```
 
-4. Configure your webserver, beaba can be run on apache or nginx
+- Configure your webserver, beaba can be run on apache or nginx
 
-5. If your install run on your production server, you should replace the require
+- If your install run on your production server, you should replace the require
 on bootstrap.php with bootstrap.build.php (it's a compressed version to decrease
 the number of includes)
 
-# Namespacing and conventions
+## Namespacing and conventions
 
 Beaba does not follow the PSR because it's not the way to go to keep it simple.
 
@@ -102,9 +112,9 @@ The rule is : No singleton pattern and no static functions/properties
 Keep in mind that it's a micro framework so DRY & KISS, the core distribution
 should not exceed 1000 lines of code.
 
-# A controller sample
+## A controller sample
 
-```
+```php
 <?php
 namespace app\controller;
 use \beaba\core\Controller;
