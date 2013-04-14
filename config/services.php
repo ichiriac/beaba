@@ -9,5 +9,6 @@ return array(
     'errors'    => 'beaba\\services\\ErrorHandler',
     'assets'    => 'beaba\\services\\Assets',
     'storage'   => 'beaba\\services\\Storage',
-    'view'      => 'beaba\\services\\View'
+    'view'      => 'beaba\\services\\View',
+    'session'   => 'beaba\\core\\services\\Session',
 );
