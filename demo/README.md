@@ -15,6 +15,10 @@ apache configuration files
 
 ## List of applications :
 
+- default : this is not really a demo, but it's more a squeleton for a new empty
+app. To start a new app you should copy/paste and read the README.md of the app
+to start your new app.
+
 - hello_world : this demo only shows a hello world, with a minimalistic 
 bootstrap process thats shows you how the beaba runs it's boostrap
 
