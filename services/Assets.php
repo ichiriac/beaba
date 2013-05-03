@@ -1,15 +1,16 @@
 <?php
-
-namespace beaba\services;
-
-use \beaba\core;
-
 /**
  * This file is distributed under the MIT Open Source
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-class Assets extends core\Service implements core\IAssets
+namespace beaba\services;
+
+use \beaba\core\Service;
+use \beaba\core\IAssets;
+
+
+class Assets extends Service implements IAssets
 {
 
     protected $_packages = array();
