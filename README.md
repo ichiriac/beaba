@@ -25,12 +25,19 @@ You're ready to start your dev
 ## List of built-in services
 
  - Configuration (extension handler)
- - Storage (used by bilbon based on PDO)
- - Model (based on bilbon classes)
+ - Storage (based on PDO)
+ - Model (based on a tiny Active Record Mapper)
  - Views (templating engine based on phtml)
- - Router (routing manager)
+ - Router (closures & controller/action compliant)
  - Request (HTTP request wrapper)
  - Response (Output handler)
+
+## Extras
+
+Beaba is totaly compliant with these great projects :
+
+ * forp & forp-ui
+ * bootstrap css (from twitter)
 
 ## Your application structure
 
@@ -56,13 +63,12 @@ into a single file.
 
 ## How to create an application
 
-- Donwload and put beaba somewhere
-By default, I use : /etc/beaba/framework
+- Donwload and put beaba somewhere (ex: /etc/beaba/framework )
 
-- Start to create your application folder
-By default, I use : /etc/beaba/apps/my-app
+- Start to create your application folder (ex: /etc/beaba/apps/my-app)
 
 - Create all application folders, including the index.php.
+(copy/paste the squeleton from demo/default/)
 
 The content of your index.php is :
 ```php
@@ -91,10 +97,6 @@ $app->getResponse()
 ```
 
 - Configure your webserver, beaba can be run on apache or nginx
-
-- If your install run on your production server, you should replace the require
-on bootstrap.php with bootstrap.build.php (it's a compressed version to decrease
-the number of includes)
 
 ## Namespacing and conventions
 
@@ -153,10 +155,3 @@ class index extends Controller {
     }
 }
 ```
-
-## Extras
-
-Beaba is totaly compliant with these great projects :
-
-* forp & forp-ui
-* bootstrap css (from twitter)
