@@ -21,11 +21,9 @@ $app = new beaba\core\WebApp(array(
          */
         'index' => array(
             // overwrite the index route
-            'route' => function() {
+            'callback' => function() {
                 // outputs an hello world
-                echo 'hello world';
-                // stops the route matching
-                return false;
+                return 'hello world';
             }
         )
     )
