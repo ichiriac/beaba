@@ -37,12 +37,26 @@ To use the automatic formating : ALT+SHIFT+F
 
 - Be pragmatic, follow the K.I.S.S and D.R.Y philosophy
 - Follow the S.O.L.I.D rules
-- Avoid using statics or globals, they are evil
+- Avoid using **statics or globals**, they are **evil**
 
 The *MOST* important rule is O.C.P : you never should change<br />
 the code to modify its behavior or add a new functionality.
 
-3. Classes coding
+
+3. Namespaces
+-------------
+
+Beaba does not follow the PSR because it's not the way to go to keep it simple.
+
+The namespaces are prefixes the first part is pointing to a folder, and the rest
+is used to create the full filename path.
+
+There are only 2 declared namespaces :
+
+ - beaba\... pointing the root of the beaba framework
+ - app\..... pointing to the root of the application (not the www root)
+
+4. Classes coding
 -----------------
 
 Avoid using false to indicate that the called method was failed. Always 

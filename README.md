@@ -98,26 +98,6 @@ $app->getResponse()
 
 - Configure your webserver, beaba can be run on apache or nginx
 
-## Namespacing and conventions
-
-Beaba does not follow the PSR because it's not the way to go to keep it simple.
-
-The namespaces are prefixes the first part is pointing to a folder, and the rest
-is used to create the full filename path.
-
-There are only 2 declared namespaces :
-
- - beaba\... pointing the root of the beaba framework
- - app\..... pointing to the root of the application (not the www root)
-
-Conventions are quite simple, do as you want, but if you need something that 
-handles something accross your app, it's necessarely an service.
-
-The rule is : No singleton pattern and no static functions/properties
-
-Keep in mind that it's a micro framework so DRY & KISS, the core distribution
-should not exceed 1000 lines of code.
-
 ## A controller sample
 
 ```php
