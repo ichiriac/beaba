@@ -1,13 +1,15 @@
 <?php
-namespace beaba\core\services;
-use \beaba\core;
-
 /**
  * This file is distributed under the MIT Open Source
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-class HttpRequest extends core\Service
+namespace beaba\core\services;
+
+use \beaba\core\Service;
+
+
+class HttpRequest extends Service
 {
     /**
      * @var string
