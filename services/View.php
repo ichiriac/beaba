@@ -1,15 +1,15 @@
 <?php
-
-namespace beaba\core\services;
-
-use \beaba\core;
-
 /**
  * This file is distributed under the MIT Open Source
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-class View extends core\Service implements core\IView
+namespace beaba\services;
+
+use \beaba\core\Service;
+use \beaba\core\IView;
+
+class View extends Service implements IView
 {
 
     protected $_defaults;
@@ -25,8 +25,8 @@ class View extends core\Service implements core\IView
     protected function onStart()
     {
         parent::onStart();
-        foreach ($this->_app->getInfos()->getConfig('assets') as $asset) {
-            $this->_app->getAssets()->attach($asset);
+        foreach ($this->app->getInfos()->getConfig('assets') as $asset) {
+            $this->app->getAssets()->attach($asset);
         }
     }
 
@@ -125,7 +125,7 @@ class View extends core\Service implements core\IView
             return $datasource;
         }
         if (is_callable($datasource)) {
-            return $datasource($this->_app);
+            return $datasource($this->app);
         } else {
             return $datasource;
         }
@@ -153,7 +153,7 @@ class View extends core\Service implements core\IView
         if (isset($this->_renderers[$file])) {
             ob_start();
             $this->_renderers[$file](
-                $this->_app, $this->getDatasource($datasource)
+                $this->app, $this->getDatasource($datasource)
             );
             return $this->debugStart('From closure : ' . $file, 'view')
                 . ob_get_clean()
@@ -183,7 +183,7 @@ class View extends core\Service implements core\IView
                     $this->_renderers[$file] = $this->_defaults[ $file ];
                     ob_start();
                     $this->_renderers[$file](
-                        $this->_app,
+                        $this->app,
                         $data
                     );
                     return
@@ -192,11 +192,12 @@ class View extends core\Service implements core\IView
                         . $this->debugEnd('view')
                     ;
                 } else {
-                    $this->_app->getLogger()->warning(
-                        'Unable to locate the view : ' . $file
+                    trigger_error(
+                         'Unable to locate the view : ' . $file
+                         , E_USER_WARNING
                     );
+                    return '';
                 }
-                return '';
             }
         }
         ob_start();
@@ -256,7 +257,7 @@ class View extends core\Service implements core\IView
             return $this->render($this->_template);
         } else {
             return $this->render(
-                    $this->_app->getInfos()->getTemplate()
+                    $this->app->getInfos()->getTemplate()
             );
         }
     }
@@ -309,11 +310,11 @@ class View extends core\Service implements core\IView
         if ($this->_flagInit) return $this;
         $this->_flagInit = true;
         if (!$this->_layout)
-            $this->_layout = $this->_app->getInfos()->getLayout();
+            $this->_layout = $this->app->getInfos()->getLayout();
         // load the layout default configuration
         $this->_defaults = merge_array(
-            $this->_app->config->getConfig('layouts'),
-            $this->_app->config->getConfig('layouts/' . $this->_layout)
+            $this->app->config->getConfig('layouts'),
+            $this->app->config->getConfig('layouts/' . $this->_layout)
         );
         foreach ($this->_defaults as $zone => $widgets) {
             if ( is_array($widgets) ) {
@@ -365,8 +366,9 @@ class View extends core\Service implements core\IView
             }
             return $result . $this->debugEnd('placeholder');
         } else {
-            $this->_app->getLogger()->warning(
-                'Undefined placeholder : ' . $zone
+            trigger_error(
+                'Undefined placeholder : ' . $zone,
+                E_USER_WARNING
             );
             return '';
         }

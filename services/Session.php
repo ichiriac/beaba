@@ -4,10 +4,12 @@
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-namespace beaba\core\services;
+namespace beaba\services;
+
 use \beaba\core\ICacheDriver;
 use \beaba\core\ISession;
 use \beaba\core\Service;
+
 /**
  * Sets user-level session storage functions
  */
@@ -50,7 +52,7 @@ class Session extends Service implements ISession
     protected function getStorage()
     {
         if ( !$this->storage ) {
-            $this->storage = $this->_app->getService('cache')->get(
+            $this->storage = $this->app->getService('cache')->get(
                 empty($this->options['driver']) ?
                     null : $this->options['driver']
             );

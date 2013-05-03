@@ -26,7 +26,7 @@ class Assets extends Service implements IAssets
     public function hasConfig($package)
     {
         if (!$this->_config)
-            $this->_config = $this->_app->config->getConfig(
+            $this->_config = $this->app->config->getConfig(
                 'assets', false, true
             );
         return isset($this->_config[$package]);

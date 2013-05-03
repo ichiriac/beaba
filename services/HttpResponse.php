@@ -1,15 +1,14 @@
 <?php
-
-namespace beaba\core\services;
-
-use \beaba\core;
-
 /**
  * This file is distributed under the MIT Open Source
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-class HttpResponse extends core\Service implements core\IResponse
+namespace beaba\services;
+use \beaba\core\Service;
+use \beaba\core\IResponse;
+
+class HttpResponse extends Service implements IResponse
 {
 
     public function setCode($code, $message)
@@ -56,7 +55,7 @@ class HttpResponse extends core\Service implements core\IResponse
 
     public function writeLine($message)
     {
-        if ($this->_app->getRequest()->getResponseType() === 'html') {
+        if ($this->app->getRequest()->getResponseType() === 'html') {
             echo $message . '<br />' . "\n";
         } else {
             echo $message . "\n";

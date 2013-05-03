@@ -4,8 +4,7 @@
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-namespace beaba\core\services;
-
+namespace beaba\services;
 use \beaba\core\Service;
 
 
@@ -64,7 +63,7 @@ class HttpRequest extends Service
      */
     public function getLang( $default = DEFAULT_LANG ) {
         if ( !$this->lang ) {
-            $langs = $this->_app->config->getConfig('infos');
+            $langs = $this->app->config->getConfig('infos');
             $langs = explode(',', $langs['langs']);
             $url = $this->getLocation();
             // handle the language

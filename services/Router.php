@@ -1,14 +1,15 @@
 <?php
-namespace beaba\core\services;
-
-use \beaba\core;
-
 /**
  * This file is distributed under the MIT Open Source
  * License. See README.MD for details.
  * @author Ioan CHIRIAC
  */
-class Router extends core\Service implements core\IRouter
+namespace beaba\services;
+
+use \beaba\core\Service;
+use \beaba\core\IRouter;
+
+class Router extends Service implements IRouter
 {
 
     /**
@@ -24,7 +25,7 @@ class Router extends core\Service implements core\IRouter
     public function getRoutes()
     {
         if (!$this->_routes) {
-            $this->_routes = $this->_app->config->getConfig('routes', true);
+            $this->_routes = $this->app->config->getConfig('routes', true);
         }
         return $this->_routes;
     }
@@ -70,7 +71,7 @@ class Router extends core\Service implements core\IRouter
                     if (is_string($route['route'])) {
                         return $route['route'];
                     } else {
-                        $route = $route['route']($url, $this->_app);
+                        $route = $route['route']($url, $this->app);
                         if ($route !== false) {
                             return $route;
                         }
