@@ -66,46 +66,56 @@ class HttpRequest extends Service
             $langs = $this->app->config->getConfig('infos');
             $langs = explode(',', $langs['langs']);
             $url = $this->getLocation();
+            // gets the host extension
+            $ext = strtolower(substr($_SERVER['HTTP_HOST'], -2));
             // handle the language
-            if ( in_array('html', $this->getResponseType()) ) {
-                $redirect = false;
-                $host = explode('.', $_SERVER['HTTP_HOST']);
-                $this->lang = array_pop($host);
-                if ( strlen($this->lang) !== 2 ) {
-                    if ( strlen($url) === 3 ) {
-                        $url .= '/';
-                    }
-                    if ( substr($url, 3, 1) === '/' ) {
-                        $this->lang = substr($url, 1, 2);
-                    } else {
-                        $this->lang = DEFAULT_LANG;
-                    }
-                }
-                if (!in_array($this->lang, $langs) ) {
-                    $url = '/'; // undefined lang
-                    $this->lang = DEFAULT_LANG;
-                }
-                if ( substr($url, 0, 4) !== '/'.$this->lang.'/' ) {
-                    $redirect = empty($_POST);
-                    $url = '/'.$this->lang.'/' . ltrim($url, '/');
-                }
-                // remove the 'www.' from the host
-                if ( $redirect || substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.') {
-                    if ( !empty($_GET) ) {
-                        $url .= '?' . http_build_query($_GET);
-                    }
-                    header('HTTP/1.0 301 Moved Permanently', true, 301);
-                    if ( substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.' ) {
-                        header('Location: http://' . substr($_SERVER['HTTP_HOST'], 4) . $url);
-                    } else {
-                        header('Location: ' . $url);
-                    }
-                    header('Status: 301 Moved Permanently');
-                    exit(0);
-                }
+            $redirect = false;
+            if ( strlen($url) === 3 && substr($url, -1) !== '/') {
+                $url .= '/';
+            }
+            if (
+                substr($url, 3, 1) === '/'
+                && in_array(substr($url, 1, 2), $langs)
+            ) {
+                $this->lang = substr($url, 1, 2);
+            } elseif(!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+                $this->lang = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 2);
+                $this->lang = explode(';', $this->lang[0]);
+                $this->lang = strtolower(substr($this->lang[0], 0, 2));
             } else {
+                $this->lang = in_array($ext, $langs) ? $ext : DEFAULT_LANG;
+            }
+            if (!in_array($this->lang, $langs) ) {
+                $url = '/'; // undefined lang
                 $this->lang = DEFAULT_LANG;
             }
+            // check if need redirection
+            if (
+                $ext !== $this->lang &&
+                substr($url, 0, 4) !== '/'.$this->lang.'/'
+            ) {
+                $redirect = empty($_POST) && in_array('html', $this->getResponseType());
+                $url = '/'.$this->lang.'/' . ltrim($url, '/');
+                // sends header just for information purpose
+                if ( !$redirect ) {
+                    header('X-Need-Redirect: '. $url);
+                }
+            }
+            // remove the 'www.' from the host
+            if ( $redirect || substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.') {
+                if ( !empty($_GET) ) {
+                    $url .= '?' . http_build_query($_GET);
+                }
+                header('HTTP/1.0 301 Moved Permanently', true, 301);
+                if ( substr($_SERVER['HTTP_HOST'], 0, 4) === 'www.' ) {
+                    header('Location: http://' . substr($_SERVER['HTTP_HOST'], 4) . $url);
+                } else {
+                    header('Location: ' . $url);
+                }
+                header('Status: 301 Moved Permanently', true, 301);
+                exit(0);
+            }
+            // remove the language from the path for routing purpose
             if ( substr($url, 0, 4) === '/'.$this->lang.'/' ) {
                 $url = substr($url, 3);
             }
