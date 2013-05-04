@@ -30,6 +30,7 @@ return array(
         )
     ),
     'bootstrap' => array(
+        'depends' => array('jquery'),
         'js' => array(
             '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js'
         ),
