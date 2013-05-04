@@ -10,5 +10,6 @@ return array(
     'assets'    => 'beaba\\services\\Assets',
     'storage'   => 'beaba\\services\\Storage',
     'view'      => 'beaba\\services\\View',
-    'session'   => 'beaba\\core\\services\\Session',
+    'session'   => 'beaba\\services\\Session',
+    'infos'     => 'beaba\\services\\Infos',
 );

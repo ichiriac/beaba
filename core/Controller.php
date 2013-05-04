@@ -19,7 +19,6 @@ class Controller
     const RSS       = 'rss';
 
     protected $app;
-    protected $debug = true;
     /**
      * Initialize a new controller with the specified app
      * @param Application $app
@@ -84,13 +83,6 @@ class Controller
         if ( !is_callable( array( $this, $action ) ) ) {
             throw new Exception(
                 'Undefined action : ' . $action, 501
-            );
-        }
-        if ( $this->debug ) {
-            $this->getService('logger')->debug(
-                get_class($this).'::'.$action
-                . ' -> '
-                . print_r( $params, true )
             );
         }
         $this->preAction($action, $params);

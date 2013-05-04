@@ -1,2 +1,3 @@
 /demo/hello_world/config/server/*.dev
 /.project
+/demo/default/config/server/*.dev

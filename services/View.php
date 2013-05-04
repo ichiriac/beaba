@@ -161,7 +161,7 @@ class View extends Service implements IView
             ;
         }
         // check for a file include
-        $app = $this->_app;
+        $app = $this->app;
         $data = $this->getDatasource($datasource);
         $view = $this;
         if (!file_exists($target = 'views/' . $file . '.phtml')) {
