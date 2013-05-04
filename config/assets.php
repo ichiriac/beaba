@@ -31,14 +31,10 @@ return array(
     ),
     'bootstrap' => array(
         'js' => array(
-            'main' =>
-            ASSETS_URL . '/core/bootstrap/js/bootstrap.min.js'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js'
         ),
         'css' => array(
-            'main' =>
-            ASSETS_URL . '/core/bootstrap/css/bootstrap.min.css',
-            'responsive' =>
-            ASSETS_URL . '/core/bootstrap/css/bootstrap-responsive.min.css'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css'
         )
     )
 );

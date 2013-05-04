@@ -3,8 +3,8 @@ return array(
     'name'          => 'Your WebSite',
     'title'         => 'Untitled document',
     'description'   => 'Your page description',
-    'template'      => 'default',
-    'layout'        => 'layout',
+    'template'      => 'templates/default',
+    'layout'        => 'layouts/default',
     'langs'         => 'en',
     'assets'        => array()
 );
