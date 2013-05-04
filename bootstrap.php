@@ -5,13 +5,12 @@
  * @author Ioan CHIRIAC
  */
 
-
+defined('CAN_DEBUG') or define('CAN_DEBUG', false);
 /**
  * Handling forp profiler bootstrap
  */
 if (
-    function_exists('forp_start') 
-    && defined('CAN_DEBUG') && CAN_DEBUG
+    CAN_DEBUG && function_exists('forp_start')
 ) {
     forp_start();
     register_shutdown_function(
