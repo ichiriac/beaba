@@ -10,6 +10,7 @@
         <!--[if lt IE 9]>
           <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
         <![endif]-->
+        <style type="text/css">body { padding-top: 60px; }</style>
         <?php foreach($app->getAssets()->getCss() as $css) { ?>
         <link rel="stylesheet" href="<?php echo $css; ?>" />
         <?php } ?>

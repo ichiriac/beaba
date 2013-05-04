@@ -10,7 +10,7 @@
         <?php echo $data->getMessage(); ?>
     </strong>
 </p>
-<?php if ( IS_DEV ) { ?>
+<?php if ( CAN_DEBUG ) { ?>
 <hr />
 <h2><?php echo dgettext('core', 'See the following details :'); ?></h2>
 <pre><code><?php
