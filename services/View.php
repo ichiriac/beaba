@@ -134,6 +134,8 @@ class View extends Service implements IView
     /**
      * Renders the specified file
      * @return string
+     * @ProfileGroup("view")
+     * @ProfileCaption("#1, #2")
      */
     public function render($file, $datasource = null)
     {
@@ -212,7 +214,6 @@ class View extends Service implements IView
      */
     protected function getDebug( $target = 'view' )
     {
-        if ( empty($_GET['debug']) ) return;
         if ( empty($this->options['debug']['enabled']) ) return;
         if ( empty($this->options['debug'][$target]) ) {
             throw new \Exception(
