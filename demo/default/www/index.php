@@ -35,11 +35,6 @@ $app = new beaba\core\WebApp(array(
                 'render' => 'snippet/header' // see views/snippet/header.phtml
             )
         ),
-        'top' => array( // top placeholder (from templates/default)
-            array(
-                'render' => 'snippet/banner' // see views/snippet/banner.phtml
-            )
-        ),
         'footer' => array( // footer placeholder :
             array(
                 'render' => 'snippet/footer' // see views/snippet/footer.phtml
