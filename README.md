@@ -1,9 +1,5 @@
 # Beaba-light
 
-```
-Work in progress - actually this source does not run correctly - comming soon
-```
-
 This project is a light-weight version of the beaba framework - a PHP MVC based framework - written for 
 helping you to increase your dev productivity without needing to use a big or hard to understnd framework.
 
@@ -111,25 +107,27 @@ class index extends Controller {
     }
     public function with_template_action() {
         return $this->getView()->push(
-            'index', array(
-                'data' => 'sent to view'
-            ) // views/index.phtml
+            'content', // the placeholder name 'content'
+            'controllers/index/with_template', // views/controllers/index/with_template.phtml
+             array(
+                'text' => 'sent to view'
+            ) 
         );
     }
     public function with_rest_action($args) {
         return array(
-            'GET' => array(
-                'html' => function() use($app, $args) {
+            self::GET => array(
+                self::HTML => function() use($app, $args) {
                     return $app->getView()->push(
                         'index', $args
                     );
                 },
-                'json' => $args,
-                '*' => function() { // this is a wildcard fallback
+                self::JSON => $args,
+                self::ALL => function() { // this is a wildcard fallback
                     return null;
                 }
             ),
-            'PUT' => null
+            self::PUT => null
             // ... etc ...
         );
     }
