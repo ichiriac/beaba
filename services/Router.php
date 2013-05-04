@@ -125,6 +125,7 @@ class Router extends Service implements IRouter
                 if ( $len > strlen($url) ) return false;
                 return substr_compare($url, $check[1], 0, $len, false) === 0;
                 break;
+            case 'any': return true;
             default:
                 throw new \Exception(
                     'Bad check method : ' . $check[0]
