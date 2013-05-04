@@ -18,6 +18,7 @@ class View extends Service implements IView
     protected $_placeholders = array();
     protected $_renderers = array();
     protected $_flagInit = false;
+    protected $_title;
 
     /**
      * Handle the assets loading
@@ -29,7 +30,24 @@ class View extends Service implements IView
             $this->app->getAssets()->attach($asset);
         }
     }
-
+    /**
+     * Sets the page title
+     */
+    public function setTitle( $title ) {
+        $this->_title = $title;
+        return $this;
+    }
+    /**
+     * Gets the current view title
+     * @return string
+     */
+    public function getTitle() {
+        if ( empty($this->_title) ) {
+            return $this->app->getInfos()->getTitle();
+        } else {
+            return $this->_title;
+        }
+    }
     /**
      * Sets the main layout
      */

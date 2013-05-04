@@ -512,7 +512,16 @@ interface IRouter extends IService
  */
 interface IView extends IService
 {
-
+    /**
+     * Sets the view (page) title
+     * @return IView
+     */
+    public function setTitle($title);
+    /**
+     * Gets the view (page) title
+     * @return string
+     */
+    public function getTitle();
     /**
      * Sets the main layout
      * @return IView
