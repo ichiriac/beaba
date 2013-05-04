@@ -8,14 +8,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><?php echo $app->getInfos()->getTitle(); ?></title>
         <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
         <![endif]-->
         <?php foreach($app->getAssets()->getCss() as $css) { ?>
         <link rel="stylesheet" href="<?php echo $css; ?>" />
         <?php } ?>
     </head>
     <body>
-        <?php echo $view->render('menu'); ?>
+        <?php echo $view->render('snippet/menu'); ?>
         <div class="container">
             <?php
                 if ( !$view->isEmpty('top') ) {
