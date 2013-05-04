@@ -9,7 +9,36 @@ namespace beaba\core;
  */
 class WebApp extends Application
 {
-
+    /**
+     * Prepare the view for rendering the specified error
+     * @return IView
+     */
+    public function renderError( \Exception $error ){
+        if ($error instanceof Exception) {
+            $code = $error->getCode();
+            $title = $error->getHttpMessage();
+        } else {
+            $code = 500;
+            $title = 'Internal Error';
+        }
+        $this->getResponse()->setCode(
+            $code, $title
+        );
+        switch($code) {
+            case 401: $target = 'errors/unauth'; break;
+            case 404: $target = 'errors/not-found'; break;
+            default: $target = 'errors/internal'; break;
+        }
+        return $this->getView()
+            ->setTitle($code . ' - ' . $title)
+            ->setLayout('layouts/center')
+            ->push(
+                'content',
+                $target,
+                $error
+            )
+        ;
+    }
     /**
      * Renders the HTML response
      * @param mixed $response
@@ -310,47 +339,9 @@ class WebApp extends Application
                     E_USER_WARNING
                 );
                 header('X-Reason: ' . $ex->getMessage() );
-                if ($ex instanceof http\ViewException) {
-                    $this->getService('response')->setCode(
-                        $ex->getCode(), $ex->getHttpMessage()
-                    );
-                    if ( $this->isFormat($format, 'html') ) {
-                        $response = $this->renderResponse(
-                            $ex->getResponse(), $format
-                        );
-                    } else {
-                        if (
-                            $ex->getInnerException()
-                            instanceof http\FormValidation
-                        ) {
-                            $ex = $ex->getInnerException();
-                            $response = $this->renderResponse(
-                                array(
-                                    'errors' => $ex->getErrors()
-                                ), $format
-                            );
-                        } else {
-                            $response = $this->renderResponse(
-                                array(
-                                'error' => array(
-                                    'title' => $ex->getMessage(),
-                                    'from' => $ex->getInnerException()->getMessage()
-                                )
-                                ), $format
-                            );
-                        }
-                    }
-                } else {
-                    $response = $this->renderResponse(
-                        $this->execute(
-                            'beaba\\controllers\\errors', 'show', array(
-                            'request' => $url,
-                            'params' => $params,
-                            'error' => $ex
-                            )
-                        ), $format
-                    );
-                }
+                $response = $this->renderResponse(
+                    $this->renderError($ex), $format
+                );
             }
         }
         // flush the view instance
