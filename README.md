@@ -28,6 +28,12 @@ You're ready to start your dev
  - Request (HTTP request wrapper)
  - Response (Output handler)
 
+Documentation :
+https://github.com/ichiriac/beaba-doc
+
+Demos :
+https://github.com/ichiriac/beaba-demos
+
 ## Extras
 
 Beaba is totaly compliant with these great projects :
