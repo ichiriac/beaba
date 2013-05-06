@@ -1,1 +1,0 @@
-This folder will contains all configuration files
