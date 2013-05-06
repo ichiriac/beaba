@@ -64,7 +64,7 @@ into a single file.
 - Start to create your application folder (ex: /etc/beaba/apps/my-app)
 
 - Create all application folders, including the index.php.
-(copy/paste the squeleton from demo/default/)
+(copy/paste the squeleton from https://github.com/ichiriac/beaba-demos/tree/master/default)
 
 The content of your index.php is :
 ```php
