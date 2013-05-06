@@ -65,7 +65,7 @@ into a single file.
 
 ## How to create an application
 
-- Donwload and put beaba somewhere (ex: /etc/beaba/framework )
+- Download and put beaba somewhere (ex: /etc/beaba/framework )
 
 - Start to create your application folder (ex: /etc/beaba/apps/my-app)
 
