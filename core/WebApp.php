@@ -29,6 +29,7 @@ class WebApp extends Application
             case 404: $target = 'errors/not-found'; break;
             default: $target = 'errors/internal'; break;
         }
+        $this->instances['view'] = null;
         return $this->getView()
             ->setTitle($code . ' - ' . $title)
             ->setLayout('layouts/center')
@@ -333,12 +334,16 @@ class WebApp extends Application
                     }
                 }
             } else {
+                $msg = explode("\n", trim($ex->getMessage() ));
                 trigger_error(
-                    $ex->getMessage() . "\n" .
-                    $ex->getFile() . ':' . $ex->getLine(),
+                    $this->getRequest()->getLocation()
+                    . ' -> '
+                    . $ex->getMessage() . "\n"
+                    . $ex->getFile() . ':'
+                    . $ex->getLine(),
                     E_USER_WARNING
                 );
-                header('X-Reason: ' . $ex->getMessage() );
+                header('X-Reason: ' . $msg[0] );
                 $response = $this->renderResponse(
                     $this->renderError($ex), $format
                 );
