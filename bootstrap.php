@@ -43,11 +43,14 @@ spl_autoload_register(
     function($class) {
         $location = explode('\\', $class, 2);
         switch( $location[0] ) {
-            case 'app':
+            case APP_NAME:
                 include APP_PATH . '/' . strtr($location[1], '\\', '/') . '.php';
                 break;
             case 'beaba':
                 include BEABA_PATH . '/' . strtr($location[1], '\\', '/') . '.php';
+                break;
+            default:
+                include BEABA_APP . '/' . $location[0] . '/' . strtr($location[1], '\\', '/') . '.php';
                 break;
         }
         return class_exists( $class, false );
