@@ -47,7 +47,7 @@ class Exception extends \Exception
         if ( isset( static::$codes[ $this->getCode() ] ) ) {
             return static::$codes[ $this->getCode() ];
         } else {
-            static::$codes[ 500 ];
+            return static::$codes[ 500 ];
         }
     }
 }
